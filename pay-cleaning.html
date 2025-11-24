@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay for Cleaning Services - Sara's Cleaning</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .payment-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .payment-method {
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        .payment-method h3 {
+            color: #333;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .payment-method p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        .payment-info {
+            background: #f8f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .payment-info strong {
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .note p {
+            color: #856404;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <h1>💳 Payment</h1>
+        <p class="subtitle">Choose your preferred payment method</p>
+
+        <div class="payment-methods">
+            <!-- Zelle -->
+            <div class="payment-method">
+                <h3>💸 Zelle (Recommended)</h3>
+                <p>Free, instant transfer • No fees</p>
+                <div class="payment-info">
+                    <p><strong>Send to: (323) 400-7678</strong></p>
+                    <p style="font-size: 0.85rem; color: #666;">Enter Sara's phone number in Zelle app</p>
+                </div>
+                <a href="https://www.zellepay.com/" target="_blank" class="btn">Open Zelle</a>
+            </div>
+
+            <!-- Venmo -->
+            <div class="payment-method">
+                <h3>💰 Venmo</h3>
+                <p>Quick payment via Venmo</p>
+                <div class="payment-info">
+                    <p><strong>Call Sara for Venmo details</strong></p>
+                    <p style="font-size: 0.85rem; color: #666;">(323) 400-7678</p>
+                </div>
+                <a href="tel:3234007678" class="btn">Call Sara</a>
+            </div>
+
+            <!-- Cash App -->
+            <div class="payment-method">
+                <h3>💵 Cash App</h3>
+                <p>Pay with Cash App</p>
+                <div class="payment-info">
+                    <p><strong>Call Sara for Cash App details</strong></p>
+                    <p style="font-size: 0.85rem; color: #666;">(323) 400-7678</p>
+                </div>
+                <a href="tel:3234007678" class="btn">Call Sara</a>
+            </div>
+
+            <!-- Cash -->
+            <div class="payment-method">
+                <h3>💵 Cash</h3>
+                <p>Pay with cash upon service completion</p>
+                <div class="payment-info">
+                    <p style="font-size: 0.9rem; color: #666;">Simply pay Sara in cash when she completes your cleaning service.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="note">
+            <p><strong>📧 Email Receipt:</strong> saraangelesdd@gmail.com</p>
+            <p style="margin-top: 5px;">Please include your name and service date in payment notes.</p>
+        </div>
+
+        <div class="back-link">
+            <a href="index.html">← Back to Services</a>
+        </div>
+    </div>
+</body>
+</html>
