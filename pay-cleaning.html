@@ -4,658 +4,219 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pay for Cleaning Services - Sara's Cleaning Services</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://js.stripe.com/v3/"></script>
     <style>
-        .payment-hero {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .payment-hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        .payment-hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+            min-height: 100vh;
+            padding: 20px;
         }
 
         .payment-container {
             max-width: 600px;
-            margin: -40px auto 60px;
+            margin: 40px auto;
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            padding: 40px;
-            position: relative;
-            z-index: 10;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
         }
 
-        .form-section {
-            margin-bottom: 30px;
-        }
-
-        .form-section h3 {
-            color: #667eea;
-            margin-bottom: 20px;
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .form-section h3::before {
-            content: attr(data-step);
-            background: #667eea;
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            font-weight: 700;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-sizing: border-box;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .form-group.required label::after {
-            content: " *";
-            color: #ff6b6b;
-        }
-
-        .service-selection {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .service-option {
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 15px;
+            padding: 40px;
             text-align: center;
-            cursor: pointer;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .payment-method {
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
             transition: all 0.3s ease;
         }
 
-        .service-option:hover {
+        .payment-method:hover {
             border-color: #667eea;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .payment-method .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .payment-method h3 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .payment-method p {
+            color: #666;
+            text-align: center;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .payment-info {
             background: #f8f9ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: center;
         }
 
-        .service-option input[type="radio"] {
-            display: none;
-        }
-
-        .service-option input[type="radio"]:checked + .service-content {
+        .payment-info strong {
             color: #667eea;
-        }
-
-        .service-option input[type="radio"]:checked ~ .service-option {
-            border-color: #667eea;
-            background: #f8f9ff;
-        }
-
-        .service-option.selected {
-            border-color: #667eea;
-            background: #f8f9ff;
-        }
-
-        .service-content {
-            pointer-events: none;
-        }
-
-        .service-icon {
-            font-size: 2rem;
-            margin-bottom: 8px;
-        }
-
-        .service-name {
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 1.2rem;
+            display: block;
             margin-bottom: 5px;
         }
 
-        .service-price {
-            color: #667eea;
-            font-weight: 700;
+        .payment-info .detail {
+            color: #333;
             font-size: 1.1rem;
-        }
-
-        .payment-summary {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-        }
-
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 1rem;
-        }
-
-        .summary-row.total {
-            border-top: 2px solid #dee2e6;
-            padding-top: 15px;
-            margin-top: 15px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #667eea;
-        }
-
-        .discount-code {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .discount-code input {
-            flex: 1;
-        }
-
-        .discount-code button {
-            padding: 12px 20px;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
             font-weight: 600;
         }
 
-        .discount-code button:hover {
-            background: #5568d3;
-        }
-
-        .discount-applied {
-            color: #4CAF50;
-            font-size: 0.9rem;
-            margin-top: 8px;
-            display: none;
-        }
-
-        .discount-applied.show {
-            display: block;
-        }
-
-        .pay-button {
-            width: 100%;
-            padding: 18px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .btn {
+            display: inline-block;
+            background: #667eea;
             color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
             transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            font-size: 1.1rem;
+            margin-top: 10px;
         }
 
-        .pay-button:hover {
+        .btn:hover {
+            background: #5568d3;
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
-        .pay-button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .secure-badge {
-            text-align: center;
-            margin-top: 20px;
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .secure-badge::before {
-            content: "🔒 ";
-        }
-
-        .error-message {
-            background: #fee;
-            color: #c33;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .error-message.show {
-            display: block;
-        }
-
-        .loading {
-            display: none;
-            text-align: center;
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
             padding: 20px;
-        }
-
-        .loading.show {
-            display: block;
-        }
-
-        .spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #667eea;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .info-box {
-            background: #e8f4f8;
-            border-left: 4px solid #667eea;
-            padding: 15px;
+            margin: 30px 0;
             border-radius: 5px;
-            margin-bottom: 20px;
         }
 
-        .info-box p {
-            margin: 0;
-            color: #555;
+        .note p {
+            color: #856404;
+            margin-bottom: 10px;
             font-size: 0.95rem;
         }
 
-        @media (max-width: 768px) {
-            .payment-container {
-                margin: -20px 20px 40px;
-                padding: 25px;
-            }
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+        }
 
-            .payment-hero h1 {
-                font-size: 2rem;
-            }
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+        }
 
-            .service-selection {
-                grid-template-columns: 1fr 1fr;
-            }
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 30px 0;
+            color: #999;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
-
-    <!-- Hero Section -->
-    <section class="payment-hero">
-        <h1>💳 Pay for Cleaning Services</h1>
-        <p>Secure payment powered by Stripe</p>
-    </section>
-
-    <!-- Payment Form -->
     <div class="payment-container">
-        <div class="error-message" id="errorMessage"></div>
+        <div class="hero">
+            <h1>💳 Payment Options</h1>
+            <p>Choose your preferred payment method</p>
+        </div>
 
-        <form id="cleaningPaymentForm">
-            <!-- Section 1: Service Selection -->
-            <div class="form-section">
-                <h3 data-step="1">Select Your Service</h3>
-                <div class="service-selection">
-                    <label class="service-option">
-                        <input type="radio" name="service" value="basic" data-price="100" required>
-                        <div class="service-content">
-                            <div class="service-icon">🏠</div>
-                            <div class="service-name">Basic Clean</div>
-                            <div class="service-price">$100</div>
-                        </div>
-                    </label>
+        <div class="content">
+            <div class="note">
+                <p><strong>📞 Questions?</strong> Call or text Sara: (323) 400-7678</p>
+                <p><strong>📧 Email:</strong> saraangelesdd@gmail.com</p>
+            </div>
 
-                    <label class="service-option">
-                        <input type="radio" name="service" value="deep" data-price="200">
-                        <div class="service-content">
-                            <div class="service-icon">✨</div>
-                            <div class="service-name">Deep Clean</div>
-                            <div class="service-price">$200</div>
-                        </div>
-                    </label>
-
-                    <label class="service-option">
-                        <input type="radio" name="service" value="organizing" data-price="150">
-                        <div class="service-content">
-                            <div class="service-icon">📦</div>
-                            <div class="service-name">Organizing</div>
-                            <div class="service-price">$150</div>
-                        </div>
-                    </label>
-
-                    <label class="service-option">
-                        <input type="radio" name="service" value="custom" data-price="0">
-                        <div class="service-content">
-                            <div class="service-icon">⚙️</div>
-                            <div class="service-name">Custom</div>
-                            <div class="service-price">Custom</div>
-                        </div>
-                    </label>
+            <!-- Zelle -->
+            <div class="payment-method">
+                <div class="icon">💸</div>
+                <h3>Zelle (Recommended)</h3>
+                <p>Free, instant transfer • No fees • Fastest option</p>
+                <div class="payment-info">
+                    <strong>Send to:</strong>
+                    <p class="detail">(323) 400-7678</p>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">
+                        Open your bank app → Select Zelle → Enter the phone/email above
+                    </p>
                 </div>
+                <a href="https://www.zellepay.com/" target="_blank" class="btn">Open Zelle Website</a>
+            </div>
 
-                <div class="form-group" id="customAmountGroup" style="display: none;">
-                    <label for="customAmount">Custom Amount ($)</label>
-                    <input type="number" id="customAmount" name="customAmount" min="50" step="1" placeholder="Enter amount">
+            </div>
+
+            <!-- Cash -->
+            <div class="payment-method">
+                <div class="icon">💵</div>
+                <h3>Cash</h3>
+                <p>Pay upon service completion</p>
+                <div class="payment-info">
+                    <p style="color: #666;">
+                        Simply pay Sara in cash when she completes your cleaning service.
+                        Please have exact change if possible.
+                    </p>
                 </div>
             </div>
 
-            <!-- Section 2: Your Information -->
-            <div class="form-section">
-                <h3 data-step="2">Your Information</h3>
-                
-                <div class="form-group required">
-                    <label for="clientName">Full Name</label>
-                    <input type="text" id="clientName" name="clientName" required placeholder="John Doe">
-                </div>
-
-                <div class="form-group required">
-                    <label for="clientEmail">Email Address</label>
-                    <input type="email" id="clientEmail" name="clientEmail" required placeholder="john@example.com">
-                </div>
-
-                <div class="form-group required">
-                    <label for="clientPhone">Phone Number</label>
-                    <input type="tel" id="clientPhone" name="clientPhone" required placeholder="(323) 555-0123">
-                </div>
+            <div class="note" style="background: #d4edda; border-left-color: #28a745;">
+                <p style="color: #155724;"><strong>💡 Payment Notes:</strong></p>
+                <p style="color: #155724;">• Please include your name and service date in payment note/memo</p>
+                <p style="color: #155724;">• You'll receive confirmation via text or email</p>
+                <p style="color: #155724;">• USC students: Use code TROJAN75 for 75% OFF first cleaning!</p>
             </div>
 
-            <!-- Section 3: Service Details -->
-            <div class="form-section">
-                <h3 data-step="3">Service Details</h3>
-                
-                <div class="form-group required">
-                    <label for="serviceAddress">Service Address</label>
-                    <input type="text" id="serviceAddress" name="serviceAddress" required placeholder="123 Main St, Los Angeles, CA 90007">
-                </div>
-
-                <div class="form-group">
-                    <label for="serviceDate">Preferred Date</label>
-                    <input type="date" id="serviceDate" name="serviceDate">
-                </div>
-
-                <div class="form-group">
-                    <label for="serviceNotes">Special Requests or Notes</label>
-                    <textarea id="serviceNotes" name="serviceNotes" rows="3" placeholder="Any special instructions, add-ons, or requests..."></textarea>
-                </div>
+            <div class="back-link">
+                <a href="index.html">← Back to Home</a>
             </div>
-
-            <!-- Payment Summary -->
-            <div class="payment-summary">
-                <div class="summary-row">
-                    <span>Service:</span>
-                    <span id="summaryService">-</span>
-                </div>
-                <div class="summary-row">
-                    <span>Subtotal:</span>
-                    <span id="summarySubtotal">$0</span>
-                </div>
-                <div class="summary-row" id="discountRow" style="display: none;">
-                    <span>Discount (<span id="discountPercent">0</span>%):</span>
-                    <span id="summaryDiscount" style="color: #4CAF50;">-$0</span>
-                </div>
-                <div class="summary-row total">
-                    <span>Total:</span>
-                    <span id="summaryTotal">$0</span>
-                </div>
-
-                <div class="discount-code">
-                    <input type="text" id="discountCodeInput" placeholder="Discount code (e.g., TROJAN75)">
-                    <button type="button" onclick="applyDiscount()">Apply</button>
-                </div>
-                <div class="discount-applied" id="discountApplied">
-                    ✅ Discount code applied!
-                </div>
-            </div>
-
-            <div class="info-box">
-                <p><strong>Note:</strong> After clicking "Pay Now", you'll be redirected to Stripe's secure checkout page to complete your payment.</p>
-            </div>
-
-            <button type="submit" class="pay-button" id="payButton">
-                💳 Pay Now - Secure Checkout
-            </button>
-
-            <div class="secure-badge">
-                Secured by Stripe · Your payment information is encrypted
-            </div>
-        </form>
-
-        <div class="loading" id="loading">
-            <div class="spinner"></div>
-            <p style="margin-top: 15px; color: #667eea; font-weight: 600;">Redirecting to secure payment...</p>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Sara's Cleaning Services</h3>
-                <p>Professional property management and cleaning services in the USC area.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <p>📞 Property Mgmt: (323) 400-7678</p>
-                <p>🧹 Cleaning: (323) 202-9033</p>
-                <p>📧 saraangelesdd@gmail.com</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Sara's Cleaning Services. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Discount codes
-        const DISCOUNT_CODES = {
-            'TROJAN75': 75,  // USC Student discount
-            'MONTHLY': 20,   // Monthly client discount
-            'REFERRAL': 20,  // Referral discount
-            'FIRST': 10      // First-time customer
-        };
-
-        let currentDiscount = 0;
-        let currentDiscountCode = '';
-
-        // Service selection handling
-        document.querySelectorAll('input[name="service"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                // Update UI
-                document.querySelectorAll('.service-option').forEach(opt => {
-                    opt.classList.remove('selected');
-                });
-                this.closest('.service-option').classList.add('selected');
-
-                // Show/hide custom amount
-                if (this.value === 'custom') {
-                    document.getElementById('customAmountGroup').style.display = 'block';
-                    document.getElementById('customAmount').required = true;
-                } else {
-                    document.getElementById('customAmountGroup').style.display = 'none';
-                    document.getElementById('customAmount').required = false;
-                }
-
-                updateSummary();
-            });
-        });
-
-        // Custom amount handling
-        document.getElementById('customAmount')?.addEventListener('input', updateSummary);
-
-        // Update payment summary
-        function updateSummary() {
-            const selectedService = document.querySelector('input[name="service"]:checked');
-            if (!selectedService) return;
-
-            let serviceName = selectedService.closest('.service-option').querySelector('.service-name').textContent;
-            let amount = 0;
-
-            if (selectedService.value === 'custom') {
-                const customAmount = parseFloat(document.getElementById('customAmount').value) || 0;
-                amount = customAmount;
-                serviceName = `Custom Service ($${amount})`;
-            } else {
-                amount = parseFloat(selectedService.dataset.price);
-            }
-
-            const subtotal = amount;
-            const discountAmount = (subtotal * currentDiscount) / 100;
-            const total = subtotal - discountAmount;
-
-            document.getElementById('summaryService').textContent = serviceName;
-            document.getElementById('summarySubtotal').textContent = `$${subtotal.toFixed(0)}`;
-            document.getElementById('summaryTotal').textContent = `$${total.toFixed(0)}`;
-
-            if (currentDiscount > 0) {
-                document.getElementById('discountRow').style.display = 'flex';
-                document.getElementById('discountPercent').textContent = currentDiscount;
-                document.getElementById('summaryDiscount').textContent = `-$${discountAmount.toFixed(0)}`;
-            } else {
-                document.getElementById('discountRow').style.display = 'none';
-            }
-        }
-
-        // Apply discount code
-        function applyDiscount() {
-            const code = document.getElementById('discountCodeInput').value.trim().toUpperCase();
-            
-            if (DISCOUNT_CODES[code]) {
-                currentDiscount = DISCOUNT_CODES[code];
-                currentDiscountCode = code;
-                document.getElementById('discountApplied').classList.add('show');
-                document.getElementById('discountCodeInput').disabled = true;
-                updateSummary();
-            } else {
-                showError('Invalid discount code');
-            }
-        }
-
-        // Form submission
-        document.getElementById('cleaningPaymentForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const selectedService = document.querySelector('input[name="service"]:checked');
-            if (!selectedService) {
-                showError('Please select a service');
-                return;
-            }
-
-            let amount = 0;
-            let serviceName = '';
-
-            if (selectedService.value === 'custom') {
-                amount = parseFloat(document.getElementById('customAmount').value);
-                serviceName = 'Custom Cleaning Service';
-                if (!amount || amount < 50) {
-                    showError('Custom amount must be at least $50');
-                    return;
-                }
-            } else {
-                amount = parseFloat(selectedService.dataset.price);
-                serviceName = selectedService.closest('.service-option').querySelector('.service-name').textContent;
-            }
-
-            // Apply discount
-            if (currentDiscount > 0) {
-                amount = amount - (amount * currentDiscount / 100);
-            }
-
-            const formData = {
-                serviceType: selectedService.value,
-                serviceName: serviceName,
-                amount: Math.round(amount), // Round to nearest dollar
-                clientName: document.getElementById('clientName').value,
-                clientEmail: document.getElementById('clientEmail').value,
-                clientPhone: document.getElementById('clientPhone').value,
-                serviceAddress: document.getElementById('serviceAddress').value,
-                serviceDate: document.getElementById('serviceDate').value,
-                serviceNotes: document.getElementById('serviceNotes').value,
-                discountCode: currentDiscountCode
-            };
-
-            // Show loading
-            document.getElementById('cleaningPaymentForm').style.display = 'none';
-            document.getElementById('loading').classList.add('show');
-
-            try {
-                const response = await fetch('/api/create-cleaning-payment', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
-                });
-
-                const data = await response.json();
-
-                if (data.error) {
-                    throw new Error(data.error);
-                }
-
-                // Redirect to Stripe Checkout
-                window.location.href = data.url;
-
-            } catch (error) {
-                console.error('Error:', error);
-                showError(error.message || 'Payment failed. Please try again.');
-                document.getElementById('cleaningPaymentForm').style.display = 'block';
-                document.getElementById('loading').classList.remove('show');
-            }
-        });
-
-        function showError(message) {
-            const errorDiv = document.getElementById('errorMessage');
-            errorDiv.textContent = message;
-            errorDiv.classList.add('show');
-            setTimeout(() => {
-                errorDiv.classList.remove('show');
-            }, 5000);
-        }
-
-        // Set minimum date to today
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('serviceDate').setAttribute('min', today);
-    </script>
 </body>
 </html>
