@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Cleaning & Organizing Services - USC Area | OG Properties</title>
+    <meta name="description" content="Professional home cleaning and organizing services in USC area. Contact Ileana for expert cleaning, deep cleaning, and home organization. Same-day service available.">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Hero Section */
+        .cleaning-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .cleaning-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .cleaning-hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cleaning-hero .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .cta-btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .cta-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* Services Grid */
+        .services-section {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .service-card .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin: 20px 0;
+        }
+
+        .service-card .price-note {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .service-card ul {
+            text-align: left;
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .service-card li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .service-card .book-btn {
+            background: #667eea;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .service-card .book-btn:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .contact-card {
+            background: white;
+            color: #333;
+            padding: 50px;
+            border-radius: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .contact-card h2 {
+            color: #667eea;
+            margin-bottom: 30px;
+        }
+
+        .contact-info {
+            margin: 30px 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            font-size: 1.2rem;
+        }
+
+        .contact-item .icon {
+            font-size: 2rem;
+            color: #667eea;
+        }
+
+        .contact-item a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Payment Options */
+        .payment-section {
+            padding: 60px 20px;
+            background: white;
+        }
+
+        .payment-options {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 40px auto 0;
+        }
+
+        .payment-option {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            flex: 1;
+            min-width: 250px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .payment-option:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+        }
+
+        .payment-option .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .payment-option h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .payment-option .btn {
+            background: #667eea;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .payment-option .btn:hover {
+            background: #764ba2;
+        }
+
+        /* Why Choose Us */
+        .why-us-section {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 40px auto 0;
+        }
+
+        .why-us-item {
+            text-align: center;
+        }
+
+        .why-us-item .icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .why-us-item h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto 0;
+        }
+
+        .testimonial {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        /* Special Offers Banner */
+        .special-offer {
+            background: linear-gradient(90deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .special-offer .highlight {
+            background: white;
+            color: #ff6b6b;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cleaning-hero h1 {
+                font-size: 2rem;
+            }
+
+            .cleaning-hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .contact-card {
+                padding: 30px 20px;
+            }
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .badge.popular {
+            background: #ff6b6b;
+        }
+    </style>
+</head>
+<body>
+    <!-- Special Offer Banner -->
+    <div class="special-offer">
+        🎉 USC Student Special: <span class="highlight">75% OFF</span> your first cleaning! Use code: TROJAN75
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <span class="logo-text">OG PROPERTIES</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="availability.html">AVAILABILITY</a></li>
+                    <li><a href="services.html">SERVICES</a></li>
+                    <li><a href="cleaning-services.html" class="active">CLEANING</a></li>
+                    <li><a href="residents.html">RESIDENTS</a></li>
+                    <li><a href="owners.html">OWNERS</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+                <button class="mobile-menu-toggle">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="cleaning-hero">
+        <h1>✨ Professional Cleaning & Organizing</h1>
+        <p class="subtitle">Your Home, Sparkling Clean. Your Time, Yours Again.</p>
+        <p style="font-size: 1.1rem; margin-bottom: 30px;">Serving USC area students, homeowners, and property managers</p>
+        
+        <div class="cta-buttons">
+            <a href="tel:3232029033" class="cta-btn cta-btn-primary">
+                📞 Call Now: (323) 202-9033
+            </a>
+            <a href="#payment" class="cta-btn cta-btn-secondary">
+                💳 Book & Pay Online (75% OFF!)
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="services-section">
+        <h2 class="section-title">Our Cleaning Services</h2>
+        <p class="section-subtitle">Professional, reliable, and affordable cleaning solutions tailored to your needs</p>
+        
+        <div class="services-grid">
+            <!-- Basic Cleaning -->
+            <div class="service-card">
+                <div class="service-icon">🏠</div>
+                <h3>Basic Cleaning</h3>
+                <div class="price">$80-120</div>
+                <p class="price-note">Perfect for regular maintenance</p>
+                <ul>
+                    <li>✓ Vacuum & mop all floors</li>
+                    <li>✓ Dust all surfaces</li>
+                    <li>✓ Kitchen cleaning</li>
+                    <li>✓ Bathroom cleaning</li>
+                    <li>✓ Trash removal</li>
+                    <li>✓ 2-3 hour service</li>
+                </ul>
+                <span class="badge">Most Popular</span>
+                <a href="tel:3232029033" class="book-btn">Book Now</a>
+            </div>
+
+            <!-- Deep Cleaning -->
+            <div class="service-card">
+                <div class="service-icon">✨</div>
+                <h3>Deep Cleaning</h3>
+                <div class="price">$150-250</div>
+                <p class="price-note">Move-in/out & spring cleaning</p>
+                <ul>
+                    <li>✓ Everything in Basic, PLUS:</li>
+                    <li>✓ Inside appliances (oven, fridge)</li>
+                    <li>✓ Baseboards & window sills</li>
+                    <li>✓ Inside cabinets/closets</li>
+                    <li>✓ Carpet spot treatment</li>
+                    <li>✓ 4-6 hour service</li>
+                </ul>
+                <span class="badge popular">Best Value</span>
+                <a href="tel:3232029033" class="book-btn">Book Now</a>
+            </div>
+
+            <!-- Home Organizing -->
+            <div class="service-card">
+                <div class="service-icon">📦</div>
+                <h3>Home Organizing</h3>
+                <div class="price">$100-200</div>
+                <p class="price-note">Declutter & organize your space</p>
+                <ul>
+                    <li>✓ Closet organization</li>
+                    <li>✓ Kitchen pantry setup</li>
+                    <li>✓ Storage optimization</li>
+                    <li>✓ Donation/disposal help</li>
+                    <li>✓ Custom solutions</li>
+                    <li>✓ 3-5 hour service</li>
+                </ul>
+                <a href="tel:3232029033" class="book-btn">Book Now</a>
+            </div>
+
+            <!-- Property Management Package -->
+            <div class="service-card">
+                <div class="service-icon">🏢</div>
+                <h3>Property Management</h3>
+                <div class="price">INCLUDED</div>
+                <p class="price-note">Part of our 12% management fee</p>
+                <ul>
+                    <li>✓ Move-out deep cleaning</li>
+                    <li>✓ Pre-showing touch-ups</li>
+                    <li>✓ Turnover cleaning</li>
+                    <li>✓ Regular maintenance visits</li>
+                    <li>✓ Unlimited service calls</li>
+                    <li>✓ Priority scheduling</li>
+                </ul>
+                <span class="badge" style="background: #667eea;">Property Owners</span>
+                <a href="owner-signup.html" class="book-btn">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-us-section">
+        <h2 class="section-title">Why Choose Our Cleaning Service?</h2>
+        
+        <div class="why-us-grid">
+            <div class="why-us-item">
+                <div class="icon">👩‍💼</div>
+                <h3>Experienced Pro</h3>
+                <p>Ileana has 10+ years of professional cleaning experience in the USC area</p>
+            </div>
+
+            <div class="why-us-item">
+                <div class="icon">🕐</div>
+                <h3>Same-Day Service</h3>
+                <p>Need it today? We often have same-day availability. Just call!</p>
+            </div>
+
+            <div class="why-us-item">
+                <div class="icon">💯</div>
+                <h3>100% Satisfaction</h3>
+                <p>Not happy? We'll come back and make it right. No questions asked.</p>
+            </div>
+
+            <div class="why-us-item">
+                <div class="icon">🔒</div>
+                <h3>Trusted & Insured</h3>
+                <p>Fully insured and background checked. Your home is in safe hands.</p>
+            </div>
+
+            <div class="why-us-item">
+                <div class="icon">🧴</div>
+                <h3>Eco-Friendly Options</h3>
+                <p>Green cleaning products available upon request at no extra cost</p>
+            </div>
+
+            <div class="why-us-item">
+                <div class="icon">💳</div>
+                <h3>Easy Payment</h3>
+                <p>Pay via Zelle, credit card, or cash. Whatever works for you!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-card">
+            <h2>📞 Contact Ileana Directly</h2>
+            <p style="font-size: 1.1rem; color: #666; margin-bottom: 30px;">
+                For fastest service, call or text Ileana directly. She'll answer all your questions and schedule your cleaning!
+            </p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="icon">📱</span>
+                    <a href="tel:3232029033">(323) 202-9033</a>
+                </div>
+                
+                <div class="contact-item">
+                    <span class="icon">💬</span>
+                    <a href="sms:3232029033">Text for Quick Quote</a>
+                </div>
+
+                <div class="contact-item">
+                    <span class="icon">✉️</span>
+                    <a href="mailto:support@og-rooms.com">support@og-rooms.com</a>
+                </div>
+            </div>
+
+            <p style="margin-top: 30px; color: #666; font-size: 0.95rem;">
+                📍 Serving USC area: 90007, 90089, and surrounding neighborhoods<br>
+                ⏰ Available 7 days a week, 8 AM - 6 PM
+            </p>
+        </div>
+    </section>
+
+    <!-- Payment Options -->
+    <section class="payment-section" id="payment">
+        <h2 class="section-title">Easy Payment Options</h2>
+        <p class="section-subtitle">Choose the payment method that works best for you</p>
+        
+        <div class="payment-options">
+            <!-- Zelle Payment -->
+            <div class="payment-option">
+                <div class="icon">💸</div>
+                <h3>Zelle (Instant)</h3>
+                <p style="margin: 15px 0; color: #666;">
+                    Free, instant transfer<br>
+                    No fees, fastest option
+                </p>
+                <p style="font-weight: 600; color: #667eea; margin: 10px 0;">
+                    Send to: (323) 202-9033
+                </p>
+                <a href="https://www.zellepay.com/" target="_blank" class="btn">Open Zelle</a>
+            </div>
+
+            <!-- Credit Card Payment -->
+            <div class="payment-option">
+                <div class="icon">💳</div>
+                <h3>Credit Card</h3>
+                <p style="margin: 15px 0; color: #666;">
+                    Secure Stripe payment<br>
+                    All major cards accepted
+                </p>
+                <p style="font-weight: 600; color: #667eea; margin: 10px 0;">
+                    Safe & Secure
+                </p>
+                <a href="pay-cleaning.html" class="btn">Pay with Card</a>
+            </div>
+        </div>
+
+        <p style="text-align: center; margin-top: 40px; color: #666;">
+            💵 Cash payment accepted upon service completion<br>
+            💰 Venmo & Cash App also available - ask Ileana!
+        </p>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <h2 class="section-title">What Our Clients Say</h2>
+        
+        <div class="testimonials-grid">
+            <div class="testimonial">
+                <div class="testimonial-text">
+                    "Ileana is amazing! My apartment has never looked this good. She's thorough, professional, and super friendly. I'm a USC student and she totally gets our needs."
+                </div>
+                <div class="testimonial-author">- Sarah M., USC Student</div>
+            </div>
+
+            <div class="testimonial">
+                <div class="testimonial-text">
+                    "We use OG Properties for our rental management and their cleaning service is included. Our tenants always comment on how spotless the place is when they move in. Worth every penny!"
+                </div>
+                <div class="testimonial-author">- James L., Property Owner</div>
+            </div>
+
+            <div class="testimonial">
+                <div class="testimonial-text">
+                    "Called at 9am, Ileana came at 2pm same day! Deep cleaned our whole house before our parents visited. She's a lifesaver! Highly recommend."
+                </div>
+                <div class="testimonial-author">- Mike & Lisa T., Homeowners</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>OG Properties</h3>
+                <p>Professional property management and cleaning services in the USC area.</p>
+                <p style="margin-top: 15px;">
+                    <strong>Cleaning Services Contact:</strong><br>
+                    Ileana: <a href="tel:3232029033" style="color: white;">(323) 202-9033</a>
+                </p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Property Management</a></li>
+                    <li><a href="cleaning-services.html">Cleaning Services</a></li>
+                    <li><a href="owners.html">For Property Owners</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <ul>
+                    <li><a href="#services">Basic Cleaning</a></li>
+                    <li><a href="#services">Deep Cleaning</a></li>
+                    <li><a href="#services">Home Organizing</a></li>
+                    <li><a href="services.html">Property Management</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>📞 General: (213) 301-9692</p>
+                <p>🧹 Cleaning: (323) 202-9033</p>
+                <p>📧 support@og-rooms.com</p>
+                <p>🌐 www.og-rooms.com</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 OG Properties. All rights reserved.</p>
+            <div>
+                <a href="privacy.html">Privacy Policy</a> | 
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
